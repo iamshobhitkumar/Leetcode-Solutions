@@ -8,9 +8,7 @@ public:
         for(int i=1;i<m;i++){
             curr[0] = grid[i][0] + prev[0];
             for(int j=1;j<n;j++){
-                int up = 1e9, left = 1e9;
-                if(i-1>=0) up = prev[j];
-                if(j-1>=0) left = curr[j-1];
+                int up = prev[j], left = curr[j-1];
                 curr[j] = grid[i][j] + min(up,left);
             }
             prev = curr;
