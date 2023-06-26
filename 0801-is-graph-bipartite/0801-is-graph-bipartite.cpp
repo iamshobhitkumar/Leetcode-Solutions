@@ -1,6 +1,16 @@
 class Solution {
 public:
 
+    bool dfs(vector<vector<int>>& graph, vector<int>& colour, int node){
+        for(auto it: graph[node]){
+            if(colour[it]==colour[node])return false;
+            else if(colour[it]==0){
+                colour[it] = -colour[node];
+                if(!dfs(graph,colour,it)) return false;
+            }
+        }
+        return true;
+    }
     bool bfs(vector<vector<int>>& graph, vector<int>& colour, int node){
         queue<int> q;
         q.push(node);
@@ -23,7 +33,8 @@ public:
         vector<int> colour(n,0);
         for(int i=0;i<n;i++){
             if(colour[i]==0){
-                if(!bfs(graph, colour,i)) return false;
+                colour[i] = 1;
+                if(!dfs(graph, colour,i)) return false;
             }
         }
         return true;
