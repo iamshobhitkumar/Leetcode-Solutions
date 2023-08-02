@@ -1,2 +1,3 @@
 # Write your MySQL query statement below
-select name, bonus from Employee left join Bonus on Employee.empId = Bonus.empId having bonus<1000 or bonus is NULL;
+select name, bonus from Employee e left join Bonus b on
+e.empId = b.empId having bonus < 1000 or bonus is NULL;
